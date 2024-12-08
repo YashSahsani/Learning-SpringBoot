@@ -1,5 +1,6 @@
 package com.github.learning_spring.entity;
 
+import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long departmentId;
 
+    @NonNull
     @NotBlank(message = "Please enter department name")
     private String departmentName;
 
