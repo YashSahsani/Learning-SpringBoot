@@ -31,7 +31,7 @@ public class DepartmentController {
     private final Logger LOGGER = Logger.getLogger(DepartmentController.class.getName());
     
     @PostMapping("/saveDepartment")
-    public String saveDepartment(@Valid @RequestBody Department department) {
+    public Department saveDepartment(@Valid @RequestBody Department department) {
         return departmentService.saveDepartment(department);
     }
 
@@ -60,4 +60,7 @@ public class DepartmentController {
     public Department getDepartmentByName(@PathVariable String name) throws DepartmentNotFound{
         return departmentService.getDepartmentByName(name);
     }
+
+
+    
 }

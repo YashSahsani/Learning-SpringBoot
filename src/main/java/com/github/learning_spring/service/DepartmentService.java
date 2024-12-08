@@ -7,7 +7,7 @@ import com.github.learning_spring.errors.DepartmentNotFound;
 
 public interface DepartmentService {
 
-    public String saveDepartment(Department department);
+    public Department saveDepartment(Department department);
 
     public List<Department> getAllDepartments();
 
