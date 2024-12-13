@@ -10,5 +10,6 @@ public class LearningSpringApplicationTests {
     @Test
     void contextLoads() {
         // Test logic
+        
     }
 }
