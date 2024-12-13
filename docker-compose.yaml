@@ -1,6 +1,8 @@
+version: '3.8'
+
 services:
   db:
-    image: mysql
+    image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: learning_spring
@@ -8,3 +10,26 @@ services:
       - "3306:3306"
     volumes:
       - ./mysql:/var/lib/mysql
+    networks:
+      - backend
+    
+
+  spring-boot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/learning_spring  # Use db as the hostname
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - backend
+    entrypoint: [ "java", "-jar", "app.jar"]  # Wait for DB before starting app
+
+networks:
+  backend:
+    driver: bridge

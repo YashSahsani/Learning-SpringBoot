@@ -1,23 +1,29 @@
 server:
-    port: 8001
+    port: 8080
 
+    
 spring:
     profiles:
-        active: prod
+        active: dev
+    application:
+        name: learning-spring
 ---
 spring:
     config:
         activate:
             on-profile: dev
     datasource:
-        url: jdbc:mysql://localhost:3306/springboot-dev
-        username: root
-        password: root
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${SPRING_DATASOURCE_USERNAME}
+        password: ${SPRING_DATASOURCE_PASSWORD}
         driver-class-name: com.mysql.cj.jdbc.Driver
     jpa:
         hibernate:
             ddl-auto: update
         show-sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
 welcome:
     message: Welcome to Spring Boot Application
 --- 
@@ -26,13 +32,40 @@ spring:
         activate:
             on-profile: prod
     datasource:
-        url: jdbc:mysql://localhost:3306/springboot-prod
-        username: root
-        password: root
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${SPRING_DATASOURCE_USERNAME}
+        password: ${SPRING_DATASOURCE_PASSWORD}
         driver-class-name: com.mysql.cj.jdbc.Driver
     jpa:
         hibernate:
             ddl-auto: update
         show-sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8Dialect
 welcome:
     message: Welcome to Spring Boot Application
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MYSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+welcome:
+  message: Testing with H2 Database
