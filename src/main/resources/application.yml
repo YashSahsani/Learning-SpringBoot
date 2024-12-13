@@ -13,9 +13,9 @@ spring:
         activate:
             on-profile: dev
     datasource:
-        url: ${SPRING_DATASOURCE_URL}
-        username: ${SPRING_DATASOURCE_USERNAME}
-        password: ${SPRING_DATASOURCE_PASSWORD}
+        url: jdbc:mysql://localhost:3306/learning_spring
+        username: root
+        password: root
         driver-class-name: com.mysql.cj.jdbc.Driver
     jpa:
         hibernate:
@@ -25,16 +25,16 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL8Dialect
 welcome:
-    message: Welcome to Spring Boot Application
+    message: Welcome to Spring Boot Application DEV
 --- 
 spring:
     config:
         activate:
             on-profile: prod
     datasource:
-        url: ${SPRING_DATASOURCE_URL}
-        username: ${SPRING_DATASOURCE_USERNAME}
-        password: ${SPRING_DATASOURCE_PASSWORD}
+        url: ${DATASOURCE_URL}
+        username: ${DATASOURCE_USERNAME}
+        password: ${DATASOURCE_PASSWORD}
         driver-class-name: com.mysql.cj.jdbc.Driver
     jpa:
         hibernate:
@@ -44,7 +44,7 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL8Dialect
 welcome:
-    message: Welcome to Spring Boot Application
+    message: Welcome to Spring Boot Application PROD
 ---
 
 spring:
