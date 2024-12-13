@@ -29,6 +29,12 @@
 	<properties>
 		<java.version>23</java.version>
 	</properties>
+	<distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/YashSahsani/Learning-SpringBoot</url> <!-- Replace with your username and repo -->
+        </repository>
+    </distributionManagement>
 	<dependencies>
 
 		<dependency>
@@ -113,12 +119,4 @@
             </plugin>
         </plugins>
     </build>
-	<distributionManagement>
-        <repository>
-            <id>github</id> <!-- Server id matches settings.xml -->
-            <url>https://maven.pkg.github.com/YashSahsani/Learning-SpringBoot</url> <!-- Replace with your repository URL -->
-        </repository>
-    </distributionManagement>
-
-
 </project>
