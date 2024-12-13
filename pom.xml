@@ -113,6 +113,12 @@
             </plugin>
         </plugins>
     </build>
+	<distributionManagement>
+        <repository>
+            <id>github</id> <!-- Server id matches settings.xml -->
+            <url>https://maven.pkg.github.com/YashSahsani/Learning-SpringBoot</url> <!-- Replace with your repository URL -->
+        </repository>
+    </distributionManagement>
 
 
 </project>
