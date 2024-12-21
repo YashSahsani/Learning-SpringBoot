@@ -8,4 +8,9 @@ RUN mvn clean package
 FROM openjdk:23-jdk-slim
 WORKDIR /app
 COPY --from=builder /app/target/learning-spring.jar app.jar
-
+EXPOSE 8080
+ENV DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/learning_spring
+ENV DATASOURCE_USERNAME=root
+ENV DATASOURCE_PASSWORD=prodroot
+ENV SPRING_PROFILES_ACTIVE=prod
+CMD ["java", "-jar", "app.jar"]
