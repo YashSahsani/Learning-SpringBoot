@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app-deployment
+  namespace: spring
+  labels:
+    app: spring-boot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+      - name: spring-boot-app
+        image: yashsahsani/spring-learning:latest
+        env:
+        - name: DATASOURCE_URL
+          value: jdbc:mysql://db-service:3306/learning_spring
+        - name: DATASOURCE_USERNAME
+          value: root
+        - name: DATASOURCE_PASSWORD
+          value: prodroot
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
+        ports:
+        - containerPort: 8080
