@@ -123,7 +123,7 @@ jobs:
       uses: snyk/actions/docker@master
       with:
         image: ${{ secrets.DOCKER_USERNAME }}/spring-learning:${{ github.sha }}
-        severityThreshold: high
+        args: --severity-threshold=high
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     
