@@ -46,7 +46,7 @@ jobs:
       with:
         projectBaseDir: .
         args: >
-          -Dsonar.projectKey=Learning-SpringBoot
+          -Dsonar.projectKey=yashsahsani/Learning-SpringBoot
           -Dsonar.organization=yashsahsani
           -Dsonar.sources=.
           -Dsonar.java.binaries=target/
