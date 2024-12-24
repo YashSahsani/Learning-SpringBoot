@@ -61,17 +61,15 @@ jobs:
 
     - name: Snyk Dependency Scan
       uses: snyk/actions/setup@master
-      
-    - name: Set up Snyk CLI
-      uses: snyk/actions/setup@v2
-      with:
-        snyk_token: ${{ secrets.SNYK_TOKEN }}
-
-    - name: Run Snyk test for vulnerabilities
+    - name: Run Snyk Test
       run: snyk test --all-projects --severity-threshold=high
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     - name: Monitor the project on Snyk
       run: snyk monitor --all-projects
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     
     - name: Scan for Vulnerable Dependencies with Trivy
       uses: aquasecurity/trivy-action@master
