@@ -1,0 +1,8 @@
+apiVersion: v1 
+kind: ConfigMap
+metadata:
+  name: spring-boot-app-config
+  namespace: spring
+data:
+  DATASOURCE_URL: jdbc:mysql://db-service:3306/learning_spring
+  SPRING_PROFILES_ACTIVE: prod

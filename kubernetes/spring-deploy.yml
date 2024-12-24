@@ -6,7 +6,7 @@ metadata:
   labels:
     app: spring-boot-app
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: spring-boot-app
@@ -18,14 +18,31 @@ spec:
       containers:
       - name: spring-boot-app
         image: yashsahsani/spring-learning:latest
+        securityContext:  
+          readOnlyRootFilesystem: true  
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
         env:
         - name: DATASOURCE_URL
-          value: jdbc:mysql://db-service:3306/learning_spring
+          valueFrom:
+            configMapKeyRef:
+              name: spring-boot-app-config
+              key: DATASOURCE_URL
         - name: DATASOURCE_USERNAME
-          value: root
+          valueFrom:
+            secretKeyRef:
+              name: spring-boot-app-secret
+              key: DATASOURCE_USERNAME
         - name: DATASOURCE_PASSWORD
-          value: prodroot
+          valueFrom:
+            secretKeyRef:
+              name: spring-boot-app-secret
+              key: DATASOURCE_PASSWORD
         - name: SPRING_PROFILES_ACTIVE
-          value: prod
+          valueFrom:
+            configMapKeyRef:
+              name: spring-boot-app-config
+              key: SPRING_PROFILES_ACTIVE
         ports:
         - containerPort: 8080
+        

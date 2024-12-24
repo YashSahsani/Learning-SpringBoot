@@ -5,7 +5,7 @@ COPY . .
 RUN mvn clean package
 
 # Stage 2: Run the application
-FROM openjdk:23-jdk-slim
+FROM openjdk:24-jdk-slim
 WORKDIR /app
 COPY --from=builder /app/target/learning-spring.jar app.jar
 EXPOSE 8080
