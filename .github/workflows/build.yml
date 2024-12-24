@@ -50,22 +50,14 @@ jobs:
           distribution: 'temurin'
           java-version: '23'
 
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifact
+      - name: Build the project
+        run: mvn clean install -DskipTests
 
-      - name: Run Static Code Analysis with SonarCloud
-        uses: SonarSource/sonarcloud-github-action@v2
+      - name: SonarCloud Scan
+        uses: antonioaversa/sonarcloud-github-action@v4.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.projectKey=yashsahsani/Learning-SpringBoot
-            -Dsonar.organization=yashsahsani
-            -Dsonar.sources=.
-            -Dsonar.java.binaries=target/
+          SONAR_HOST_URL: 'https://sonarcloud.io'
 
 
   # Security Scanning
