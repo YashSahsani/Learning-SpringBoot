@@ -18,6 +18,10 @@ spec:
       containers:
       - name: spring-boot-app
         image: yashsahsani/spring-learning:latest
+        securityContext:  
+          readOnlyRootFilesystem: true  
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
         env:
         - name: DATASOURCE_URL
           valueFrom:
@@ -41,3 +45,4 @@ spec:
               key: SPRING_PROFILES_ACTIVE
         ports:
         - containerPort: 8080
+        

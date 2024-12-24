@@ -52,7 +52,8 @@ public class DepartmentController {
     }
     
     @DeleteMapping("/deleteDepartment/{id}")
-    public String deleteMethodName(@PathVariable String id) {
+    public String deleteMethodName(@Valid @PathVariable String id) {
+        
         return departmentService.deleteDepartment(id);
     }
 
